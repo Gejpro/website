@@ -120,4 +120,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = (
+                os.path.join(BASE_DIR,'static'), # if your static files folder is named "staticfiles"
+)
+
 TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'music/templates'),)
