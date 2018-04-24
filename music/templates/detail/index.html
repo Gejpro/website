@@ -12,6 +12,20 @@
 
     {%  if error_message %}
         <p><strong>{{  error_message }}</strong></p>
-    #comment
+    {% endif %}
+
+    <form action="{% url 'music:favorite' album.id %}" method="post">
+        {% csrf_token %}
+        {% for song in album.song_set.all %}
+            <input type="radio" id="song{{ forloop.counter }}" name="song" value="{{  song.id }}"/>
+            <label for="song{{ forloop.counter }}">
+                {{ song.song_title }}
+                {%  if song.is_favorite %}
+                    <img src="https://cdn2.iconfinder.com/data/icons/aspneticons_v1.0_Nov2006/ok_16x16.gif" />
+                {% endif %}
+            </label><br>
+        {% endfor %}
+        <input type="submit" value="Favorite">
+    </form>
 </body>
 </html>
