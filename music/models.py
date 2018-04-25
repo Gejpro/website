@@ -1,4 +1,6 @@
 from django.db import models
+from django.core.urlresolvers import reverse
+
 
 class Album(models.Model):
     artist = models.CharField(max_length=255)
@@ -6,8 +8,12 @@ class Album(models.Model):
     genre = models.CharField(max_length=255)
     album_art = models.CharField(max_length=255)
 
+    def get_absalute_url(self):
+        return reverse('music:detail',)
+
     def __str__(self):
         return self.album_title + ' - ' + self.artist
+
 
 class Song(models.Model):
     album = models.ForeignKey(Album, on_delete=models.CASCADE)
