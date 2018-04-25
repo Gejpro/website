@@ -1,5 +1,5 @@
 from django.db import models
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 
 class Album(models.Model):
@@ -9,7 +9,7 @@ class Album(models.Model):
     album_art = models.CharField(max_length=255)
 
     def get_absalute_url(self):
-        return reverse('music:detail',)
+        return reverse('music:detail', kwargs={'pk': self})
 
     def __str__(self):
         return self.album_title + ' - ' + self.artist
